@@ -15379,5 +15379,22 @@ function showAlert(message, duration = 1000) {
     alert.textContent = message
     alert.classList.add("alert")
     alertContainer.prepend(alert)
+    if (duration == null) return
+
+    setTimeout(() => {
+        alert.classList.add("hide")
+        alert.addEventListener("transitionend", () => {
+            alert.remove()
+        })
+    }, duration)
+}
+
+function shakeTiles(tiles) {
+    tiles.forEach(tile => {
+        tile.classList.add("shake")
+        tile.addEventListener("animationend", () => {
+            tile.classList.remove("shake")
+        }, {once: true})
+    })
 }
 
