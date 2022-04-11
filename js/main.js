@@ -15444,10 +15444,10 @@ function shakeTiles(tiles) {
     })
 }
 
-function checkWinLose(guess, tile) {
+function checkWinLose(guess, tiles) {
     if (guess === targetWord){
         showAlert("You Win", 5000)
-        danceTiles(tile)
+        danceTiles(tiles)
         stopInteraction()
         return
     }
@@ -15459,8 +15459,8 @@ function checkWinLose(guess, tile) {
     }
 }
 
-function danceTiles(tile) {
-    tile.forEach((tile, index) => {
+function danceTiles(tiles) {
+    tiles.forEach((tile, index) => {
         setTimeout(() => {
             tile.classList.add("dance")
             tile.addEventListener(
@@ -15470,7 +15470,7 @@ function danceTiles(tile) {
         }, 
         {once: true}
             )
-        })
-    }, index * DANCE_ANIMATION_DURATION / 5)
+        }, index * DANCE_ANIMATION_DURATION / 5)
+    })
 }
 
