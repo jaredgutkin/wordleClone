@@ -15445,16 +15445,22 @@ function shakeTiles(tiles) {
 }
 
 function checkWinLose(guess, tile) {
-    if (guess === targetWords){
+    if (guess === targetWord){
         showAlert("You Win", 5000)
-        danceTiles(tiles)
+        danceTiles(tile)
         stopInteraction()
         return
     }
+
+    const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
+    if (remainingTiles.length === 0){
+        showAlert(targetWord.toUpperCase(), null)
+        stopInteraction()
+    }
 }
 
-function danceTiles(tiles) {
-    tiles.forEach((tile, index) => {
+function danceTiles(tile) {
+    tile.forEach((tile, index) => {
         setTimeout(() => {
             tile.classList.add("dance")
             tile.addEventListener(
